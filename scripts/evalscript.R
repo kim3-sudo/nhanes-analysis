@@ -8,12 +8,9 @@
 ## load packages
 library(mosaic)
 library(Stat2Data)
-library(car)
-library(agricolae)
-library(asbio)
 library(leaps)
 library(Hmisc)
-library(ggplot2)
+library(HH)
   ## Hmisc is for numerical correlation matrix
 
 #################################################
@@ -72,3 +69,161 @@ nummat <- nhanes[, c("Age",
                      "AlcoholYear")]
 mat1 <- rcorr(as.matrix(nummat))
 mat1
+
+#################################################
+## Try building some models
+## automated backwards procedure
+fullback <- lm(Diabetes~Gender+
+                 Age+
+                 Race1+
+                 HHIncomeMid+
+                 HomeRooms+
+                 HomeOwn+
+                 Work+
+                 Weight+
+                 Height+
+                 BMI+
+                 Pulse+
+                 BPSysAve+
+                 BPDiaAve+
+                 DirectChol+
+                 TotChol+
+                 UrineVol1+
+                 UrineFlow1+
+                 HealthGen+
+                 DaysPhysHlthBad+
+                 DaysMentHlthBad+
+                 SleepHrsNight+
+                 PhysActive+
+                 PhysActiveDays+
+                 AlcoholDay+
+                 AlcoholYear,
+               data = nhanes)
+MSE = (summary(fullback)$sigma)^2
+step(fullback, scale = MSE, direction = "backward")
+
+## automated forwards procedure
+noneforw <- lm(Diabetes~1, data = nhanes)
+step(noneforw, scope = list(upper=fullback), scale = MSE, direction = "forward")
+
+## automated stepwise procedure
+nonestep <- lm(Diabetes~1, data = nhanes)
+step(nonestep, scope = list(upper=fullback), scale = MSE)
+
+## best subsets procedure
+all = regsubsets(Diabetes~Gender+
+                   Age+
+                   Race1+
+                   HHIncomeMid+
+                   HomeRooms+
+                   HomeOwn+
+                   Work+
+                   Weight+
+                   Height+
+                   BMI+
+                   Pulse+
+                   BPSysAve+
+                   BPDiaAve+
+                   DirectChol+
+                   TotChol+
+                   UrineVol1+
+                   UrineFlow1+
+                   HealthGen+
+                   DaysPhysHlthBad+
+                   DaysMentHlthBad+
+                   SleepHrsNight+
+                   PhysActive+
+                   PhysActiveDays+
+                   AlcoholDay+
+                   AlcoholYear,
+                 data = nhanes)
+  ## explore adjusted R^2 values
+summary(all)$adjr2
+plot(all, scale = "adjr2")
+  ## restricted subset
+newrestrict = regsubsets(Diabetes~Gender+
+                           Age+
+                           Race1+
+                           HHIncomeMid+
+                           HomeRooms+
+                           HomeOwn+
+                           Work+
+                           Weight+
+                           Height+
+                           BMI+
+                           Pulse+
+                           BPSysAve+
+                           BPDiaAve+
+                           DirectChol+
+                           TotChol+
+                           UrineVol1+
+                           UrineFlow1+
+                           HealthGen+
+                           DaysPhysHlthBad+
+                           DaysMentHlthBad+
+                           SleepHrsNight+
+                           PhysActive+
+                           PhysActiveDays+
+                           AlcoholDay+
+                           AlcoholYear,
+                         nbest = 2,
+                         data = nhanes)
+summary(newrestrict)
+  ## explore Cp values, smaller is better
+plot(newrestrict, scale = "Cp")
+  ## get the Cp for any model
+newfull = lm(Diabetes~Gender+
+               Age+
+               Race1+
+               HHIncomeMid+
+               HomeRooms+
+               HomeOwn+
+               Work+
+               Weight+
+               Height+
+               BMI+
+               Pulse+
+               BPSysAve+
+               BPDiaAve+
+               DirectChol+
+               TotChol+
+               UrineVol1+
+               UrineFlow1+
+               HealthGen+
+               DaysPhysHlthBad+
+               DaysMentHlthBad+
+               SleepHrsNight+
+               PhysActive+
+               PhysActiveDays+
+               AlcoholDay+
+               AlcoholYear,
+             data = nhanes)
+MSE=(summary(newfull)$sigma)^2
+extractAIC(lm(Diabetes~Gender+
+                Age+
+                Race1+
+                HHIncomeMid+
+                HomeRooms+
+                HomeOwn+
+                Work+
+                Weight+
+                Height+
+                BMI+
+                Pulse+
+                BPSysAve+
+                BPDiaAve+
+                DirectChol+
+                TotChol+
+                UrineVol1+
+                UrineFlow1+
+                HealthGen+
+                DaysPhysHlthBad+
+                DaysMentHlthBad+
+                SleepHrsNight+
+                PhysActive+
+                PhysActiveDays+
+                AlcoholDay+
+                AlcoholYear,
+              data = nhanes),
+           scale = MSE)
+summaryHH(all)

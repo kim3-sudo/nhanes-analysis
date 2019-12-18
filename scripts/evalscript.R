@@ -11,6 +11,7 @@ library(Stat2Data)
 library(leaps)
 library(Hmisc)
 library(HH)
+library(caret)
   ## Hmisc is for numerical correlation matrix
 
 #################################################
@@ -237,7 +238,16 @@ favstats(~Diabetes, data = nhanes)[c("n")]
 (holdn <- 0.33*2167) # 715
 ## break the dataset
 trainnhanes <- nhanes[c(1:1452),]
-holdnhanes <- nhanes[c(1453:2167),]
+holdoutnhanes <- nhanes[c(1453:2167),]
 ## train the model
 diabetestrainmod <- glm(Diabetes~Age+HomeOwn+BMI+Pulse+TotChol+HealthGen+DaysPhysHlthBad+DaysMentHlthBad, data = trainnhanes)
 summary(diabetestrainmod)
+predictions <- diabetestrainmod %>% predict(holdoutnhanes)
+predictions
+diabeteshat <- predict(diabetestrainmod, holdoutnhanes)
+residual = holdoutnhanes$Diabetes - diabeteshat
+residual
+summary(residual)
+mean(residual)
+sd(residual)
+cor(holdoutnhanes$Diabetes~diabeteshat)

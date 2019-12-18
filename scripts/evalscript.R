@@ -24,7 +24,7 @@ head(nhanes)
 #################################################
 ## some EDA
 tally(~SurveyYr, data = nhanes)
-
+ncol(nhanes)
 ## make some scatter or box plots
 plot(Diabetes~Gender, data = nhanes)
 plot(Diabetes~Age, data = nhanes)
@@ -44,7 +44,6 @@ plot(Diabetes~UrineFlow1, data = nhanes)
 plot(Diabetes~HealthGen, data = nhanes)
 plot(Diabetes~PhysActive, data = nhanes)
 plot(Diabetes~AlcoholDay, data = nhanes)
-
 ## find correlations
 # load numerical data into matrix
 nummat <- nhanes[, c("Age",
@@ -227,3 +226,18 @@ extractAIC(lm(Diabetes~Gender+
               data = nhanes),
            scale = MSE)
 summaryHH(all)
+
+# best model uses:
+## Age, HomeOwnOwn, BMI, Pulse, TotChol, HealthGen, DaysPhysHlthBad, DaysMentHlthBad
+
+#################################################
+## Validation by training and holding out
+favstats(~Diabetes, data = nhanes)[c("n")]
+(trainn <- 0.67*2167) # 1452
+(holdn <- 0.33*2167) # 715
+## break the dataset
+trainnhanes <- nhanes[c(1:1452),]
+holdnhanes <- nhanes[c(1453:2167),]
+## train the model
+diabetestrainmod <- glm(Diabetes~Age+HomeOwn+BMI+Pulse+TotChol+HealthGen+DaysPhysHlthBad+DaysMentHlthBad, data = trainnhanes)
+summary(diabetestrainmod)

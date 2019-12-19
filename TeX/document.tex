@@ -73,92 +73,43 @@
 		\textbf{I. Introduction}
 	\end{center}
 	\justify
-	\indent Diabetes has long plagued the world, but within the past 60 years, the number of people affected by this disease has increased dramatically. The CDC estimated that in 2015, just under 8\% of the United States population was diagnosed with diabetes.
+	\indent Diabetes has long plagued the world, but within the past 60 years, the number of people affected by this disease has increased dramatically. The CDC estimated that in 2015, just under 8\% of the United States population was diagnosed with diabetes. According to a brief time series analysis of the historical data that the CDC publishes from 1980 to 2017, the rate of diabetes is continuing to grow. An ACF plot found that at four lags in, the present values for the total percentage of the population with diabetes is well related with the past total percentage reports. If we are to continue on this path, we could see changes within the healthcare and pharmaceutical industries that may not be for the best.\par
+	To further explore this, we are using a dataset from the National Health and Nutrition Examination Survey. The "survey" is actually a group of surveys, each designed to "assess the health..of adults and childre in the United States." While some surveys are very much qualitative information, the data that we will be analyzing is purely quantitative.\par
+	The NHANES program began in the 1960's, and is a major program section at the Centers for Disease Control and Prevention. It is used by both government and institutional analysts to find patterns in the approaches to and general sentiment towards healthcare and nutrition domestically. Because of its comprehensive nature, it is widely applicable for modeling and predicting patterns in many diifferent fields. The data has been used to create growth charts for children, develop the policy to remove lead from common household items, influence immunization schedules, and track diabetes. All of the data is collected and anonymized to protect the healthcare rights afforded by HIPPA. \par
+	While some of this data can be used in isolation, say to determine the rates of change in diabetes diagnoses, more comprehensive data can be used to holistically determine if there are leading causes in diabetes, including changes which may not have been foreseen at the beginning of the data collection, but which is due to more than just chance.\par
+	The NHANES dataset were retrieved in a cleaned form from the Kenyon College department of statistics. The dataset originally included about 10,000 observations across 70 different variables. The applicable dataset was cleaned to only include 2167 observations across 28 different variables. The data includes observations gathered from 2009 to 2012's biannual surveys, and the dataset was filled on a rolling schedule.\par
+	
 
 	\begin{center}
-		\textbf{II. Materials and Procedures}
+		\textbf{III. Methods}
 	\end{center}
 	\justify
-	In order to explore any variation that might exist, we designed an experiment to find, approximately speaking, the flight distance patterns of the different discs based on the throws. The raw dataset is published as a comma-separated-values spreadsheet on our Github repository. That dataset includes 30 observations of two-dimensional Euclidean distance and the component X and Y distances. Each observation is also marked with the appropriate disc type and throw type. Based on the nature of the data, we decided that no data normalization was needed; that is, we could use the original scale of the data, measured in meters, rather than having to convert the data to a scale of, say, 100. For our main analysis, we will use a two-dimensional Euclidean distance, rounded to the nearest thousandth.\par
-  The materials used in the study were a standard USA Ultimate 175 g frisbee, a 172 g Vibram Ridge disc golf putter, and an over-enthusiastic student as the thrower.  In ideal circumstances, we would have used an automated throwing machine to ensure that every throw is released in an optimal manner. Unfortunately, such a machine was not available to us, so instead Josh was tasked with throwing each disc and Frisbee. To account for exhaustion or other effects due to repeated throwing, each throw was determined by a random number generator, using the R script \verb|sample(1:30)|, and assigning each throw a unique ID.\par
-  We performed the experiment on McBride Field to take advantage of the yard line markings for vertical (Y) distance, and measured the horizontal (X) displacement by hand. On the day of testing, the weather was clear, with little to no wind effects.there was minimal wind and minimal fluctuations in temperature, humidity, or wind conditions. Each throw was released from the center of the goal line in the south endzone, thrown as far as possible, and as straight ahead as possible. We were only interested in where each throw landed, not where it rolled to. After each throw landed, its vertical distance was measured according to the yard line markings on the field. The horizontal displacement was measured using a one meter long piece of rope, from one of three “anchor” points, which were the center of the field and the hash marks, located seven meters from the center in either direction.\par
+	%Text goes here
+	Analysis began by exploring the data graphically. To determine if there were any variables that were heavily correlated with each other, a numerical correlation matrix and the accompanying $p$-value matrix were created. In analyzing this correlation matrix, I tagged correlations which had a correlation $cor > 0.25$ and $p > 0.05 = \alpha$ to find if any of these variables were heavily correlated with each other, and whether those correlations were due to more than just chance. Given a dataset with this many variables, some overlap and high correlations between variables is to be expected.\par
+	The correlations that were found did make sense. The variable \textit{HomeRooms} was correlated to \textit{HHIncomeMid}, which makes sense because as income increases, the number of rooms in your home would also increase. \textit{Height}, \textit{Weight}, and \textit{BMI} are all highly correlated, which makes sense, since BMI is derived from both height and weight, by the CDC's definition\footnote{Of note is that the CDC does NOT take into account the gender, but different BMI models may take this into account. For the purposes of this study, gender is not used.}. As expected, average diastolic blood pressure (\textit{BPDiaAve}) and average systolic blood pressure (\textit{BPSysAve}) are also related. Of note is that only the average systolic blood pressure is somewhat highly correlated with age, not average diastolic blood pressure. Finally, the first urine flow rate measurement (\textit{UrineFlow1}) is somewhat highly correlated with the volume of urine (\textit{UrineVol1}). There were no other variables which had a high correlation that were also significant.
+	Plots were made for most of the variables, against the binary variable \textit{Diabetes}. The expected behavior here was that for any given boxplot, the majority of every group would be within the box, which should have been clustered around 0. Some groups may have had an outlier of diabetics, if the variable were to be significant or heavily correlated, which would show up in any boxplot as a group of outlier points where \textit{Diabetes} = 1. Several of these plots are given as follows.
+	\begin{center}
+	  \includegraphics[width=0.6\textwidth]{img/boxdiabetesgender.png}
+	  \includegraphics[width=0.6\textwidth]{img/boxdiabetesrace.png}
+	  \includegraphics[width=0.6\textwidth]{img/boxdiabeteswork.png}
+	  \includegraphics[width=0.6\textwidth]{img/boxdiabeteshealthgen.png}
+	\end{center}
+	As shown, the behavior of each of these plots is to be expected. The majority of the surveyed individuals do not have diabetes. This is backed up with summary statistics, which report that only 145 out of the 2167 observations report having diabetes.\par
+	The linear models were built using the initial model building processes, backwards elimination, forwards selection, and stepwise regression. In all of these models, the following variables were not significant: \textit{AlcoholDay}, \textit{BPDiaAve}, \textit{HomeOwn}, \textit{Height}, \textit{HomeRooms}, and \textit{Race1}. The backwards selection model, the forwards selection model, and the stepwise model all had an ending AIC = 17.61 and a Mallow $C_{p} = 17.606$. These models all ended up being identical, regardless of direction, when trying to determine diabetes. Based on this, we do not think that the variables that were dropped in the model building process are not significant to trying to predict diabetes.
+	Now that we cut down on the number of variables that we were working with from all 28 variables, we chose to decrease the number of variables to those that were significant in a general linear model using the logistic model. Using stepwise regression, we created a model that used age, BMI, total cholestrol, days that physical health was bad, the general health, pulse rate,days theat mental health was bad, and home ownership.
+	
 
 	\begin{center}
-		\textbf{III. Analysis}\par
+		\textbf{III. Results}\par
 	\end{center}
 	\justify
-	All of the statistical analysis was done using R, and using the front-end RStudio. In addition to the functions in base R, we also used functions in the \verb|mosaic|, \verb|pwr|, \verb|agricolae|, \verb|multicomp|, and \verb|car| packages. We ran several different tests for analyses of variance, in order to find the differences between the different discs and the different throw types.\par
+	%Text goes here
 	
 	\begin{center}
-		\textbf{a. Exploring the data graphically}\par
+		\textbf{V. Conclusion}\par
 	\end{center}
 	\justify
-	To determine if there is possibly a significant difference in the standard deviations or the means of the different throws, we created two boxplots to visualize the median distances between different types of discs and different throw types. For disc type, variance in both discs look similar, but there does appear to be a difference in means. When looking at the throw types, we can see that the distribution and medians of both the flick and the backhand are comparable, but there is a stark difference between these two throws and the hammer throw.\par
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{boxplotdistdisc.png}
-    \includegraphics[width=0.8\textwidth]{boxplotdiststhrow.png}
-  \end{center}
-  We also created a diagnostic plot to see if the tight standard deviations of the hammer could be resolved by using any sort of transformation, and as we will see in part III.c, resolve some of the normality woes as well. In this plot, we can see that the slope of the line is roughly one, with the points falling somewhat close to the line. To find this exactly, we constructed a linear model from the log of the group means and the log of the group standard deviations. The slope of the line turns out to be $\approx 0.03$. This was not as close to 0 as we would have liked it to be, so we attempted to apply some transformations anyways, including a square-root transformation, a logarithmic transformation, and an exponentiation transformation at several different powers. Nonetheless, our original, untransformed data showed the best linearity. Based on this plot and the figures from the diagnostic, we chose to not apply any transformations for our analysis of variance.\par
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{diagplot.png}
-  \end{center}
-	
-	\begin{center}
-		\textbf{b. Analysis of variance}\par
-	\end{center}
-	\justify
-	Given the findings in the exploratory data analysis above, we chose to run a two-way analysis of variance to compare the variance between the different types of discs and the different types of throws. We were interested in the interaction between the throw type and the disc type. We suspected that certain discs may impact the distance, based on the throw type. For example, we might have seen that, because a disc golf disc is not designed to be thrown using the hammer, we would see dramatically decreased performance from that disc when thrown using the hammer. An inverse effect might also be present, where a certain disc performs exceptionally well using a certain throw type, or vice versa.\par
-  We started by generating an interaction plot, using the \verb!interaction.plot()! function. These plots are shown below. In the plots shown below, we can see that there is a possible interaction effect. Of note is, in the interaction plot for distance by disc type, we found that while flick and backhand lines are close enough to parallel for us to rule out interaction, these two slopes were visibly different from the slope of the line for hammer throws. In this plot, we can actually see that the line for the backhand throw and the hammer intersect, indicating a strong possibility of an interaction effect. The same is reflected in the interaction plot for distance by throw type, where the difference in slopes between the frisbee and the disc appear to be roughly equal between backhand and flicks, but visibly different between flicks and hammers.\par
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{intdistdisc.png}
-    \includegraphics[width=0.8\textwidth]{interactiondistthrow.png}
-  \end{center}
-  Based on these plots, we saw it fit to run an interaction analysis, by generating a two way ANOVA table with interaction, using the disc type, the throw type, and the interaction between the disc and throw types. After running the interaction analysis, we found that the interaction effect was not significant with a $F$-value of 2.649 on 2 degrees of freedom and a $p$-value of $0.09 > 0.05 = \alpha$. Given this, we decided that any interaction effect would not be significant. The interaction term between disc type and throw type has been dropped from any further analysis.\par
-  The next step in our analysis was to conduct an overall F-test for the model. To do this, we created an analysis of variance table on the total distance by the disc type and throw type, or the full model. We also created an analysis of variance table of total distance alone, or the null model. We then ran an analysis of variance on the full model against the null model. We found that the overall variance has a F-statistic of 5.3822 on (24, 29) residual degrees of freedom, and a $p$-value of 0.00186. By this, we can conclude that some difference exists between the different factors.\par
-  We then ran a F-test for two-way interactions, using \textit{distance} as the response variable, being predicted by \textit{disc} and \textit{type}. In this, we found that the difference in means of the different disc types was statistically significant, with a F-statistic of 12.095 on one degree of freedom, and a $p$-value of $0.00195 < 0.05 = \alpha$. We also found that the difference in means of the different throw types was statistically significant, with a F-statistic of 4.759 on two degrees of freedom, and a $p$-value of $0.01817 < 0.05 = \alpha$. Like we stated above, we found that the interaction term was not significant at a $\alpha = 0.05$ significance level.\par
-  We continued by conducting a F-test for each main effect: disc type and throw type. To do this, we ran Fisher’s least significant difference (“LSD”) test for both disc and throw type. We used no method for adjusting the $p$-values, and we computed the LSD using the analysis of variance table that was used for the F-test for two-way interactions. We then had R group our throw and disc types based on that. We found that there was a statistically significant difference between throwing a flick and a hammer, where flicks are thrown further than hammers. However, there was no difference between backhands and flicks or hammers. We also found that there was a statistically significant difference between using a frisbee and a disc; frisbees are, on average, flew further than discs.\par
-	
-	\begin{center}
-		\textbf{c. Conditions for the ANOVA}\par
-	\end{center}
-	\justify
-	We chose to run a Levene test to check the condition for equal variance, using the \verb!leveneTest()! function in R. We ran the calculations according to a two-way analysis of variance. In this, we found that with an $F$-value of 1.492 on 5 degrees of freedom, we have a $p$-value of $0.2297 > 0.05 = \alpha$. Based on this, we have no statistical evidence to suggest that the equal variance condition is being violated.\par
-	This finding is also supported in the residuals versus fitted values plot. In the plot shown below we see that all of the data points are fairly well distributed vertically. Of course, this is not perfect, but there is nothing in particular to worry about; unevenness and imperfectness to be expected in any real-world dataset.\par
-	\begin{center}
-    \includegraphics[width=0.8\textwidth]{resfitthrow.png}
-  \end{center}
-  Additionally, in the above residuals versus fitted values plot, we can see that the mean value for all residuals looks to be zero. The same holds true for the mean of each grouping of residuals.\par
-  In our normal quantile-quantile plot, we see that the normality condition for an analysis of variance is not perfect, but some uncertainty is to be expected. It is worth noting that tails of the plot looks like it could possibly be fixed by a transformation, but as we tried in section III.a, we could not find an appropriate transformation. We feel comfortable with the level of normality that is presented in this plot.\par
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{normalthrow.png}
-  \end{center}
-  We are confident that our testing methodology and experimental design have satisfied the zero-mean residual condition and the independence condition.\par
-	
-	\begin{center}
-		\textbf{IV. Results and the Model}\par
-	\end{center}
-	\justify
-	Given the above model-building procedures and F-tests, we chose to use the two-way ANOVA model with an interaction term,
-	$$Y_{ij} = \mu + \tau_{i} + \beta_{j} + \gamma_{ij} + \epsilon$$
-	for $i = 1, 2$, $j = 1, 2, 3$, and $k=1, 2, 3, 4, 5$. In this model, $\tau_{i}$ represents the effect due to the $i$-th level of the disc type, $\beta_{j}$ represents the effect due to the $j$-th level of the throw type, and $\gamma_{ij}$ represents the effect due to any effect between the $i$-th of disc type and $j$-th level of throw type. Because disc type and throw type are predetermined, categorical variables, we are using a fixed-effects model for this analysis.\par
-	As we have shown above, the interaction effect between disc type and throw type is not significant, with a $p$-value of $0.091 > 0.05 = \alpha$, with a $F$-statistic of 2.64 on two degrees of freedom. As a result, we decided to not run a Tukey honest significant difference test. \par
-	We then used the means of the groups to create groups and range plots, shown below. In this analysis, we found that there was a statistically significant difference between using a flick and a hammer, but there was no significant difference between using a flick or a backhand, or between using a backhand and a hammer. We also found that there was a statistically significant difference of means between frisbee throws and disc throws.\par
-	\begin{center}
-    \includegraphics[width=0.8\textwidth]{grouprangethrow.png}
-    \includegraphics[width=0.8\textwidth]{grouprangedisc.png}
-  \end{center}
-  Of course, the expansiveness of this study is questionable; Josh’s skill level is certainly not high enough that we could make generalizations about the wider frisbee and disc-throwing population. However, we can make the following conclusions. If we are looking to maximize distance, we should use a flick or a backhand throw, and should use a frisbee. There is no statistically significant difference in the means of the flicks and the means of the backhands. If we are looking to minimize distance, we should use a hammer or a backhand throw, and should use a disc. Again, there is no statistically significant difference in the means of the groups.\par
-	
-	\begin{center}
-		\textbf{V. Further Discussion}\par
-	\end{center}
-	\justify
-	As we discussed earlier, our analysis of the data went on a tangent to investigate horizontal displacement. Specifically, we were curious if disc type or throw type affected the horizontal displacement of a throw. Because this tangent is not central to our paper, it will be briefly summarized instead of presenting another full analysis.\par
-	Viewing an interaction plot revealed that there is some sort of interaction present in the data, so we included an interaction term in the model. A cursory glance at some EDA revealed that equal variance across different throw types may not be met, and after viewing the appropriate residual plots, we found that a transformation of the horizontal displacement variable may be necessary for this analysis.\par
-	To check what transformation might be appropriate, we created a diagnostic plot for horizontal displacement. The slope was 0.645, so we decided to try two different transformations: a square root transformation (since 0.645 is relatively close to 0.5, and a slope of 0.5 would indicate a square root transformation), and a transformation of horizontal displacement. Both of these transformations fixed the standard deviation issue, but for both transformations, the condition of normally distributed residuals is nowhere close to being met. As such, we decided to continue with our analysis of horizontal displacement using the original data. \par
-	After running a two way analysis of variance with interaction, we found that the interaction term was significant, which meant we should run Tukey’s Honest Significant Distance on the means of all possible combinations of throw and disc type to see which combinations had significant differences. The results of this test revealed that there were only two combinations with significant differences.\par
-	We encountered several issues while performing our experiment. First, one of the throws was misread, so we threw 6 disc-backhands and 4 disc-hammers, instead of the intended 5 disc-backhands and 5 disc-hammers. While it doesn’t directly affect our results, it should be noted that our data is not balanced.\par
-	Additionally, Josh had never thrown a disc prior to performing the experiment, nor is he particularly great at throwing frisbees. If we were to perform this experiment again, we would absolutely ensure that whoever is throwing has had ample experience using both discs and frisbees, and is a strong thrower with both discs and frisbees.\par
+  %Text goes here
 	
 	\newpage
 	
@@ -170,7 +121,13 @@
 		Felipe de Mendiburu (2019). agricolae: Statistical Procedures for Agricultural Research. R package version 1.3-1. https://CRAN.R-project.org/package=agricolae
 	\end{hangparas}
 	\begin{hangparas}{.5in}{1}
+	  Frank E Harrell Jr, with contributions from Charles Dupont and many others. (2019). Hmisc: Harrell Miscellaneous. R package version 4.2-0. https://CRAN.R-project.org/package=Hmisc
+	\end{hangparas}
+	\begin{hangparas}{.5in}{1}
 		John Fox and Sanford Weisberg (2019). An {R} Companion to Applied Regression, Third Edition. Thousand Oaks CA: Sage. URL: https://socialsciences.mcmaster.ca/jfox/Books/Companion/
+	\end{hangparas}
+	\begin{hangparas}{.5in}{1}
+	  Max Kuhn. Contributions from Jed Wing, Steve Weston, Andre Williams, Chris Keefer, Allan Engelhardt, Tony Cooper, Zachary Mayer, Brenton Kenkel, the R Core Team, Michael Benesty, Reynald Lescarbeau, Andrew Ziem, Luca Scrucca, Yuan Tang, Can Candan and Tyler Hunt. (2019). caret: Classification and Regression Training. R package version 6.0-84. https://CRAN.R-project.org/package=caret
 	\end{hangparas}
 	\begin{hangparas}{.5in}{1}
 		R Core Team (2019). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
@@ -179,9 +136,21 @@
 		R. Pruim, D. T. Kaplan and N. J. Horton. The mosaic Package: Helping Students to 'Think with Data' Using R (2017). The R Journal, 9(1):77-102.
 	\end{hangparas}
 	\begin{hangparas}{.5in}{1}
+	  Richard M. Heiberger (2019). HH: Statistical Analysis and Data Display: Heiberger and Holland. R package version 3.1-37. URL https://CRAN.R-project.org/package=HH
+	\end{hangparas}
+	\begin{hangparas}{.5in}{1}
 		Stephane Champely (2018). pwr: Basic Functions for Power Analysis. R package version 1.2-2. https://CRAN.R-project.org/package=pwr
 	\end{hangparas}
 	\begin{hangparas}{.5in}{1}
+	  Thomas Lumley based on Fortran code by Alan Miller (2017). leaps: Regression Subset Selection. R package version 3.0. https://CRAN.R-project.org/package=leaps
+	\end{hangparas}
+	\begin{hangparas}{.5in}{1}
 		Torsten Hothorn, Frank Bretz and Peter Westfall (2008). Simultaneous Inference in General Parametric Models. Biometrical Journal 50(3), 346--363.
+	\end{hangparas}
+	\begin{hangparas}{.5in}{1}
+	  U.S. Department of Health and Human Services. (2017). National Health and Nutrition Examination Survey. National Center for Health Statistics, Centers for Disease Control and Prevention.
+	\end{hangparas}
+	\begin{hangparas}{.5in}{1}
+	  U.S. Department of Health and Human Services. (2017). Diagnosed Diabetes. Division of Diabetes Translation, United States Diabetes Surveillance System, Centers for Disease Control and Prevention.
 	\end{hangparas}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.18)  18 DEC 2019 19:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.18)  19 DEC 2019 00:31
 entering extended mode
 **./document.tex
 (document.tex
@@ -641,38 +641,58 @@ File: img/boxdiabetesrace.png Graphic file (type png)
 <use img/boxdiabetesrace.png>
 Package pdftex.def Info: img/boxdiabetesrace.png  used on input line 93.
 (pdftex.def)             Requested size: 277.3648pt x 191.91153pt.
- [4 <./img/boxdiabetesgender.png> <./img/boxdiabetesrace.png>] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 151.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 151.
+<img/boxdiabeteswork.png, id=28, 596.2275pt x 412.54124pt>
+File: img/boxdiabeteswork.png Graphic file (type png)
+<use img/boxdiabeteswork.png>
+Package pdftex.def Info: img/boxdiabeteswork.png  used on input line 94.
+(pdftex.def)             Requested size: 277.3648pt x 191.91153pt.
+<img/boxdiabeteshealthgen.png, id=29, 596.2275pt x 412.54124pt>
+File: img/boxdiabeteshealthgen.png Graphic file (type png)
+<use img/boxdiabeteshealthgen.png>
+Package pdftex.def Info: img/boxdiabeteshealthgen.png  used on input line 95.
+(pdftex.def)             Requested size: 277.3648pt x 191.91153pt.
+ [4 <./img/boxdiabetesgender.png> <./img/boxdiabetesrace.png> <./img/boxdiabete
+swork.png>] [5 <./img/boxdiabeteshealthgen.png>]
+Overfull \hbox (5.50154pt too wide) in paragraph at lines 100--100
+[]\OT1/cmr/m/n/12 After cre-at-ing the ini-tial model us-ing step-wise lo-gis-t
+ic re-gres-sion, the model was ex-am-ined
+ []
 
-(document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 151.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 151.
+[6] [7] [8]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
+ (document.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 151.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
  ) 
 Here is how much of TeX's memory you used:
- 16976 strings out of 492450
- 307383 string characters out of 3120004
- 517617 words of memory out of 3000000
- 21182 multiletter control sequences out of 15000+200000
- 536856 words of font info for 40 fonts, out of 3000000 for 9000
+ 16995 strings out of 492450
+ 307782 string characters out of 3120004
+ 518617 words of memory out of 3000000
+ 21193 multiletter control sequences out of 15000+200000
+ 537025 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,11n,67p,1115b,334s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,18n,67p,1115b,376s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmmi12.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/skim2/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/skim2/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/skim2/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/U
-sers/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
-i12.pfb>
-Output written on document.pdf (6 pages, 109032 bytes).
+onts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/skim2/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/skim2/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/skim2
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/
+Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r8.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/skim2/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on document.pdf (9 pages, 162768 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 8 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 105 PDF objects out of 1000 (max. 8388607)
+ 13 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

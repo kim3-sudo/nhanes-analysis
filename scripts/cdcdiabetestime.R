@@ -45,6 +45,24 @@ plot(Per.ts,
      main="U.S. Population Percentage with Diabetes by Year")
 points(diabetes$Year, diabetes$TotalPercentage, pch = 19, col = "darkblue")
 
+Best.ts = ts(diabetes$TotalLowerLimit, start=1980)
+plot(Best.ts,
+     lwd=2,
+     col="darkred",
+     xlab="Year",
+     ylab="Best-case Scenario (lowerlimit) Percentage with Diabetes",
+     main="U.S. Population Percentage with Diabetes by Year")
+points(diabetes$Year, diabetes$TotalLowerLimit, pch = 19, col = "darkred")
+
+Worst.ts = ts(diabetes$TotalUpperLimit, start=1980)
+plot(Worst.ts,
+     lwd=2,
+     col="darkgreen",
+     xlab="Year",
+     ylab="Worst-case Scenario (upperlimit) Percentage with Diabetes",
+     main="U.S. Population Percentage with Diabetes by Year")
+points(diabetes$Year, diabetes$TotalUpperLimit, pch = 19, col = "darkgreen")
+
 #################################################
 ## make lagplots
 plot(TotalPercentage[2:38]~TotalPercentage[1:37], data = diabetes, xlab = "previous percentage", ylab = "total percentage")

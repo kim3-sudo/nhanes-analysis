@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.18)  19 DEC 2019 00:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.18)  19 DEC 2019 01:36
 entering extended mode
 **./document.tex
 (document.tex
@@ -630,53 +630,65 @@ This may cause the page layout to be inconsistent, however.
 [1{C:/Users/skim2/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ] [2]
-[3]
-<img/boxdiabetesgender.png, id=26, 596.2275pt x 412.54124pt>
+<img/corr.png, id=16, 772.38562pt x 412.54124pt>
+File: img/corr.png Graphic file (type png)
+<use img/corr.png>
+Package pdftex.def Info: img/corr.png  used on input line 90.
+(pdftex.def)             Requested size: 462.26999pt x 246.90346pt.
+
+[3 <./img/corr.png>]
+<img/boxdiabetesgender.png, id=24, 596.2275pt x 412.54124pt>
 File: img/boxdiabetesgender.png Graphic file (type png)
 <use img/boxdiabetesgender.png>
-Package pdftex.def Info: img/boxdiabetesgender.png  used on input line 92.
+Package pdftex.def Info: img/boxdiabetesgender.png  used on input line 96.
 (pdftex.def)             Requested size: 277.3648pt x 191.91153pt.
-<img/boxdiabetesrace.png, id=27, 596.2275pt x 412.54124pt>
+<img/boxdiabetesrace.png, id=25, 596.2275pt x 412.54124pt>
 File: img/boxdiabetesrace.png Graphic file (type png)
 <use img/boxdiabetesrace.png>
-Package pdftex.def Info: img/boxdiabetesrace.png  used on input line 93.
+Package pdftex.def Info: img/boxdiabetesrace.png  used on input line 97.
 (pdftex.def)             Requested size: 277.3648pt x 191.91153pt.
-<img/boxdiabeteswork.png, id=28, 596.2275pt x 412.54124pt>
+<img/boxdiabeteswork.png, id=26, 596.2275pt x 412.54124pt>
 File: img/boxdiabeteswork.png Graphic file (type png)
 <use img/boxdiabeteswork.png>
-Package pdftex.def Info: img/boxdiabeteswork.png  used on input line 94.
+Package pdftex.def Info: img/boxdiabeteswork.png  used on input line 98.
 (pdftex.def)             Requested size: 277.3648pt x 191.91153pt.
-<img/boxdiabeteshealthgen.png, id=29, 596.2275pt x 412.54124pt>
+<img/boxdiabeteshealthgen.png, id=27, 596.2275pt x 412.54124pt>
 File: img/boxdiabeteshealthgen.png Graphic file (type png)
 <use img/boxdiabeteshealthgen.png>
-Package pdftex.def Info: img/boxdiabeteshealthgen.png  used on input line 95.
+Package pdftex.def Info: img/boxdiabeteshealthgen.png  used on input line 99.
 (pdftex.def)             Requested size: 277.3648pt x 191.91153pt.
- [4 <./img/boxdiabetesgender.png> <./img/boxdiabetesrace.png> <./img/boxdiabete
-swork.png>] [5 <./img/boxdiabeteshealthgen.png>]
-Overfull \hbox (5.50154pt too wide) in paragraph at lines 100--100
+ [4 <./img/boxdiabetesgender.png>] [5 <./img/boxdiabetesrace.png> <./img/boxdia
+beteswork.png> <./img/boxdiabeteshealthgen.png>]
+Overfull \hbox (5.50154pt too wide) in paragraph at lines 104--104
 []\OT1/cmr/m/n/12 After cre-at-ing the ini-tial model us-ing step-wise lo-gis-t
 ic re-gres-sion, the model was ex-am-ined
  []
 
 [6] [7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
+Overfull \hbox (6.52pt too wide) in paragraph at lines 134--134
+\OT1/cmr/m/n/12 dataset. Us-ing \OT1/cmr/m/it/12 Di-a-betes \OT1/cmr/m/n/12 as 
+a pre-dic-tor could prove use-ful in reverse-engineering the use-ful-ness
+ []
+
+[9] [10] [11] [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 191.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 191.
  (document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 191.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 191.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 191.
  ) 
 Here is how much of TeX's memory you used:
- 16995 strings out of 492450
- 307782 string characters out of 3120004
+ 17008 strings out of 492450
+ 307930 string characters out of 3120004
  518617 words of memory out of 3000000
- 21193 multiletter control sequences out of 15000+200000
+ 21198 multiletter control sequences out of 15000+200000
  537025 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,18n,67p,1115b,376s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,18n,67p,1119b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmmi12.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/f
@@ -690,9 +702,9 @@ fonts/cm/cmsy10.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmsy8.pfb><C:/Users/skim2/AppData/Local/Programs/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/skim2/AppData/Local/Prog
 rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on document.pdf (9 pages, 162768 bytes).
+Output written on document.pdf (13 pages, 212627 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 131 PDF objects out of 1000 (max. 8388607)
+ 20 named destinations out of 1000 (max. 500000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

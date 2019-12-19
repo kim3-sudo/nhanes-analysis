@@ -157,6 +157,7 @@ model.final = glm(Diabetes ~ Age + BMI + TotChol + DaysPhysHlthBad +
                   na.action(na.omit))
 summary(model.final)
 ## analysis of variance for individual terms - uses lib(car)
+Anova(model.next, type = "II", test = "Wald")
 Anova(model.final, type = "II", test = "Wald")
 ## pseudo-R-squared
 nagelkerke(model.final)
@@ -217,6 +218,26 @@ model.9 <- glm(Diabetes ~ Age + BMI + TotChol + DaysPhysHlthBad + HealthGen + Ur
                data = Data.final, family=binomial())
 model.10 <- glm(Diabetes ~ Age + BMI + TotChol + DaysPhysHlthBad + HealthGen + UrineVol1 + DirectChol + DaysMentHlthBad + Work,
                 data = Data.final, family=binomial())
-
 #### use compare.glm to assess fit statistics
 anova(model.1, model.2, model.3, model.4, model.5, model.6, model.7, model.8, model.9, model.10, test="Chisq")
+
+#################################################
+## training and holdout
+favstats(~Diabetes, data = nhanes)[c("n")]
+(ntrain = 0.67 * 2167)
+(nholdout = 0.33 *2167)
+traindiab <- nhanes[c(1:1452),]
+holdoutdiab <- nhanes[c(1453:2167),]
+## doublecheck math and dataset building
+favstats(~Diabetes, data = traindiab)[c("n")]
+favstats(~Diabetes, data = holdoutdiab)[c("n")]
+trainmod <- model.final
+summary(trainmod)
+predictions <- trainmod %>% predict(holdoutdiab)
+predictions
+diabhat <- predict(trainmod, holdoutdiab)
+residual = holdoutdiab$Diabetes - diabhat
+residual
+mean(residual)
+sd(residual)
+cor(holdoutdiab$Diabetes~diabhat)

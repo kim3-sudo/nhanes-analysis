@@ -1,2 +1,3 @@
 # NHANES Analysis
 This repository contains the script to analyze parts of the NHANES dataset, condensed.
+Most of these R scripts should be easy enough to apply to the full dataset, but the run time might be longer...
